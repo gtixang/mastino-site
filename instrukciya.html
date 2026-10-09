@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Как вести сайт «Мастино»</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --card: #ffffff;
+      --text: #1f2328;
+      --muted: #5b5f66;
+      --line: #e3dccf;
+      --accent: #c8352a;
+      --tip: #fdf1dc;
+      --tip-line: #efd6a6;
+      --ok: #e3f3e6;
+      --ok-line: #b9dcc0;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 18px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+    .page { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+    h1 { font-size: 30px; line-height: 1.2; margin: 8px 0 12px; }
+    h2 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    h3 { font-size: 19px; margin: 24px 0 8px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 0 0 12px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    .lead { font-size: 19px; color: var(--muted); }
+    .num {
+      flex: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .toc a { color: var(--text); }
+    .toc li { margin-bottom: 4px; }
+    .tip, .ok {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+    .tip { background: var(--tip); border: 1px solid var(--tip-line); }
+    .ok { background: var(--ok); border: 1px solid var(--ok-line); }
+    .tip p:last-child, .ok p:last-child { margin-bottom: 0; }
+    figure { margin: 16px 0; }
+    figure img {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; max-width: 360px; }
+    .pair { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+    @media (min-width: 640px) {
+      .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      figure img { max-width: 100%; }
+    }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps > li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 20px;
+    }
+    .steps > li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+    b { font-weight: 700; }
+    .btn {
+      display: inline-block;
+      padding: 0 8px;
+      border-radius: 6px;
+      border: 1px solid var(--text);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .btn--red { background: var(--accent); border-color: var(--accent); color: #fff; }
+    footer { color: var(--muted); font-size: 15px; margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Как вести сайт «Мастино»</h1>
+    <p class="lead">
+      Простая инструкция по админке — странице, где вы сами добавляете двери, меняете цены
+      и смотрите заявки. Ничего сложного: всё как в обычной анкете на телефоне.
+    </p>
+
+    <div class="card toc">
+      <b>Содержание</b>
+      <ol>
+        <li><a href="#vhod">Как войти</a></li>
+        <li><a href="#menu">Что где находится</a></li>
+        <li><a href="#zayavki">Заявки от покупателей</a></li>
+        <li><a href="#dver">Как добавить дверь</a></li>
+        <li><a href="#furnitura">Фурнитура к дверям</a></li>
+        <li><a href="#sait">Адрес, отзывы, наши работы, розыгрыши</a></li>
+        <li><a href="#podgotovit">Что подготовить заранее</a></li>
+      </ol>
+    </div>
+
+    <div class="ok">
+      <p>
+        <b>Сломать ничего нельзя.</b> Если что-то заполнено неправильно, сайт сам подскажет, что
+        исправить. Любую дверь можно временно скрыть с сайта, не удаляя её.
+      </p>
+    </div>
+
+    <!-- 1 -->
+    <section class="card" id="vhod">
+      <h2><span class="num">1</span>Как войти</h2>
+      <p>
+        Админка откроется, когда сайт переедет на свой адрес. Тогда я пришлю ссылку,
+        <b>логин и пароль</b>. Ссылку удобно сохранить в закладки на телефоне.
+      </p>
+      <p>Можно работать и с телефона, и с компьютера — выглядит одинаково.</p>
+      <figure>
+        <img src="instrukciya/img/01-vhod.webp" width="780" height="1164" alt="Страница входа: поля «Логин» и «Пароль» и кнопка «Войти»" loading="lazy" />
+        <figcaption>Введите логин и пароль и нажмите «Войти».</figcaption>
+      </figure>
+      <div class="tip">
+        <p>Пароль никому не сообщайте. Сменить его можно в разделе «Настройки».</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="card" id="menu">
+      <h2><span class="num">2</span>Что где находится</h2>
+      <p>Внизу экрана всегда есть меню из четырёх кнопок:</p>
+      <ul>
+        <li><b>Заявки</b> — заказы и звонки с сайта.</li>
+        <li><b>Товары</b> — двери и фурнитура: добавить, изменить цену, фото.</li>
+        <li><b>Сайт</b> — адрес магазина, отзывы, фото работ, розыгрыши.</li>
+        <li><b>Настройки</b> — смена пароля и тёмная тема.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="card" id="zayavki">
+      <h2><span class="num">3</span>Заявки от покупателей</h2>
+      <p>
+        Когда покупатель оформляет заказ на сайте, заявка появляется во вкладке <b>«Новые»</b>.
+      </p>
+      <ol class="steps">
+        <li>Откройте заявку и позвоните покупателю — кнопка «Позвонить» или «Написать в WhatsApp».</li>
+        <li>Договорились — нажмите <span class="btn">Взять в работу</span>. Заявка перейдёт во вкладку «В работе».</li>
+        <li>Дверь установлена — отметьте статус <b>«Выполнена»</b>. Передумал — <b>«Отменена»</b>.</li>
+      </ol>
+      <div class="pair">
+        <figure>
+          <img src="instrukciya/img/02-zayavki.webp" width="780" height="1688" alt="Список заявок с вкладками «Новые», «В работе», «Выполнены»" loading="lazy" />
+          <figcaption>Список заявок. Сверху — вкладки и поиск по телефону или имени.</figcaption>
+        </figure>
+        <figure>
+          <img src="instrukciya/img/03-zayavka.webp" width="780" height="1688" alt="Карточка заявки: статус, клиент, кнопки «Позвонить» и «Написать в WhatsApp»" loading="lazy" />
+          <figcaption>Карточка заявки: статус, покупатель, что заказал.</figcaption>
+        </figure>
+      </div>
+      <p>
+        Если покупатель позвонил сам, заявку можно записать вручную — кнопка
+        <span class="btn btn--red">+ Новая заявка</span>.
+      </p>
+    </section>
+
+    <!-- 4 -->
+    <section class="card" id="dver">
+      <h2><span class="num">4</span>Как добавить дверь</h2>
+      <p>Откройте <b>Товары</b> и нажмите <span class="btn btn--red">+ Добавить товар</span>.</p>
+
+      <h3>Шаг 1. Выберите, что добавляете</h3>
+      <figure>
+        <img src="instrukciya/img/05-chto-dobavlyaem.webp" width="780" height="1688" alt="Выбор: входная дверь, межкомнатная дверь или фурнитура" loading="lazy" />
+        <figcaption>Входная, межкомнатная или фурнитура — от этого зависят поля дальше.</figcaption>
+      </figure>
+
+      <h3>Шаг 2. Название, цена, наличие</h3>
+      <p>
+        «Старая цена» — только для акции: на сайте она будет зачёркнута рядом с новой.
+      </p>
+      <figure>
+        <img src="instrukciya/img/06-osnovnoe.webp" width="780" height="1204" alt="Блок «Основное»: название, цена, старая цена, наличие" loading="lazy" />
+      </figure>
+
+      <h3>Шаг 3. Про дверь</h3>
+      <p>
+        <b>Линейка</b> — серия двери («Термо», «Стандарт»). По ней покупателю на сайте
+        подбираются ручки и замки. Дальше — для квартиры или дома и какие бывают размеры.
+      </p>
+      <figure>
+        <img src="instrukciya/img/07-dver.webp" width="780" height="1148" alt="Блок «Дверь»: линейка, для чего, ширина проёма" loading="lazy" />
+      </figure>
+
+      <h3>Шаг 4. Цвета</h3>
+      <p>Отметьте галочками, в каких цветах бывает эта дверь.</p>
+      <figure>
+        <img src="instrukciya/img/08-cveta.webp" width="780" height="1274" alt="Блок «Цвета» с галочками" loading="lazy" />
+      </figure>
+
+      <h3>Шаг 5. Описание и характеристики</h3>
+      <p>
+        Описание — пару предложений своими словами. Характеристики — по одной строке:
+        слева что («Толщина полотна»), справа сколько («90 мм»).
+      </p>
+      <figure>
+        <img src="instrukciya/img/10-harakteristiki.webp" width="780" height="1884" alt="Блок «Описание и характеристики» с примером заполнения" loading="lazy" />
+      </figure>
+
+      <h3>Шаг 6. Сохраните, затем добавьте фото</h3>
+      <p>
+        Нажмите <b>«Создать товар»</b> внизу. После этого появится блок <b>«Фото»</b> — нажмите
+        <span class="btn btn--red">+ Добавить фото</span> и выберите снимки из галереи. Можно
+        несколько сразу. Первое фото — главное, его видно в каталоге. Порядок меняется
+        кнопками «Выше» и «Ниже».
+      </p>
+      <figure>
+        <img src="instrukciya/img/09-foto.webp" width="780" height="1042" alt="Блок «Фото»: кнопка «Добавить фото», главное фото, выбор цвета" loading="lazy" />
+        <figcaption>У каждого фото можно указать цвет — на сайте покупатель увидит дверь в выбранном цвете.</figcaption>
+      </figure>
+
+      <h3>Шаг 7. Покажите на сайте</h3>
+      <p>Поставьте галочку «Показывать на сайте» и нажмите «Сохранить изменения». Готово — дверь в каталоге.</p>
+      <figure>
+        <img src="instrukciya/img/11-pokazyvat.webp" width="780" height="268" alt="Галочка «Показывать на сайте»" loading="lazy" />
+      </figure>
+      <div class="tip">
+        <p>
+          <b>Двери временно нет?</b> Снимите эту галочку — дверь пропадёт с сайта, но всё
+          заполненное сохранится. Вернёте галочку — дверь снова в каталоге.
+        </p>
+      </div>
+      <p>
+        <b>Поменять цену или фото</b> — в «Товарах» нажмите на дверь, исправьте и нажмите
+        «Сохранить изменения».
+      </p>
+    </section>
+
+    <!-- 5 -->
+    <section class="card" id="furnitura">
+      <h2><span class="num">5</span>Фурнитура к дверям</h2>
+      <p>
+        Ручки, замки, петли добавляются так же, как двери (тип «Фурнитура»). Чтобы покупатель
+        видел на странице двери подходящие ручки и замки, откройте <b>Товары</b> → кнопка
+        <span class="btn">Совместимость фурнитуры</span>, выберите линейку и отметьте галочками, что к
+        ней подходит. Это делается один раз для всей линейки, а не для каждой двери.
+      </p>
+      <figure>
+        <img src="instrukciya/img/12-sovmestimost.webp" width="780" height="1688" alt="Список линеек дверей со счётчиком подходящей фурнитуры" loading="lazy" />
+      </figure>
+    </section>
+
+    <!-- 6 -->
+    <section class="card" id="sait">
+      <h2><span class="num">6</span>Адрес, отзывы, наши работы, розыгрыши</h2>
+      <p>Всё, что на сайте не относится к товарам, — в разделе <b>Сайт</b>:</p>
+      <ul>
+        <li><b>Розыгрыши</b> — баннер с призом и даты розыгрыша.</li>
+        <li><b>Адрес магазина</b> — адрес, часы работы, фото входа.</li>
+        <li><b>Наши работы</b> — фото установленных дверей у покупателей.</li>
+        <li><b>Отзывы</b> — перенесите хорошие отзывы из ВКонтакте или Яндекса.</li>
+        <li><b>Подрядчики</b> — ваши установщики и доставка (на сайте не видны).</li>
+        <li><b>Каталог</b> — линейки, цвета и разделы. Нужны, когда появляется новая серия или новый цвет.</li>
+      </ul>
+      <figure>
+        <img src="instrukciya/img/13-sait.webp" width="780" height="1688" alt="Раздел «Сайт»: розыгрыши, адрес магазина, наши работы, отзывы, подрядчики" loading="lazy" />
+      </figure>
+    </section>
+
+    <!-- 7 -->
+    <section class="card" id="podgotovit">
+      <h2><span class="num">7</span>Что подготовить заранее</h2>
+      <p>Чтобы заполнить каталог за один вечер, удобно заранее собрать:</p>
+      <ul>
+        <li><b>Список дверей</b>: название, цена, в наличии или под заказ.</li>
+        <li><b>Характеристики</b> каждой двери: толщина, утеплитель, замки, размеры, цвета.</li>
+        <li><b>Фото</b> каждой двери — лучше в каждом цвете.</li>
+        <li>Фото входа в магазин и 5–10 фото установленных дверей для «Наших работ».</li>
+        <li>Несколько отзывов покупателей.</li>
+      </ul>
+      <div class="tip">
+        <p><b>Как снимать двери:</b> вертикально, дверь целиком, светлый ровный фон, днём без вспышки. Подойдут и фото от поставщика.</p>
+      </div>
+      <div class="ok">
+        <p>
+          <b>Дверей много и есть таблица Excel</b> (например, от поставщика)? Пришлите её мне —
+          загружу всё сразу, а вам останется только проверить и добавить фото.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      Если что-то непонятно или не получается — просто напишите или позвоните, разберёмся.
+    </footer>
+  </main>
+</body>
+</html>
